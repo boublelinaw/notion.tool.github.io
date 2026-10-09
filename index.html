@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Notion 嵌入工具箱</title>
+<meta name="description" content="免費的 Notion 嵌入小工具產生器：倒數計日、時間軸、聊天室、多圖展示、標題橫幅、公式標題、時鐘、進度條、語錄卡。">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%A9%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/app.css">
+<script>
+  // 在載入樣式前套用主題，避免閃爍
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('nt.theme'); } catch (e) {}
+    if (!t) t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = t;
+  })();
+</script>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="側邊選單">
+    <div class="sb-head">
+      <a class="sb-ws" href="#/">
+        <span class="sb-ws-icon">🧩</span>
+        <span class="sb-ws-name">Notion 嵌入工具箱</span>
+      </a>
+      <button class="icon-btn sb-close" id="sbClose" aria-label="關閉選單">
+        <svg viewBox="0 0 16 16" width="14" height="14"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="sb-user" id="sbUser"></div>
+    <nav class="sb-nav" id="sbNav"></nav>
+    <div class="sb-foot">
+      <span id="sbVersion"></span>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="開啟選單">
+        <svg viewBox="0 0 20 20" width="18" height="18"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+      <div class="crumbs" id="crumbs"></div>
+      <div class="top-actions">
+        <a class="top-link" href="#/guide">教學</a>
+        <a class="top-link" href="#/changelog">更新紀錄</a>
+        <button class="icon-btn" id="themeBtn" aria-label="切換深淺色" title="切換深淺色"></button>
+      </div>
+    </header>
+    <div id="view" class="view"></div>
+  </main>
+</div>
+
+<div id="mobileBar" class="mobile-bar" hidden>
+  <button class="btn" data-act="scroll-preview">👁 預覽</button>
+  <button class="btn btn-primary" data-act="copy-main">📋 <span>複製連結</span></button>
+</div>
+<div id="toasts" class="toasts" aria-live="polite"></div>
+<div id="modalRoot"></div>
+
+<script src="assets/js/core.js"></script>
+<script src="assets/js/widgets/countdown.js"></script>
+<script src="assets/js/widgets/timeline.js"></script>
+<script src="assets/js/widgets/chat.js"></script>
+<script src="assets/js/widgets/gallery.js"></script>
+<script src="assets/js/widgets/banner.js"></script>
+<script src="assets/js/widgets/formula.js"></script>
+<script src="assets/js/widgets/clock.js"></script>
+<script src="assets/js/widgets/progress.js"></script>
+<script src="assets/js/widgets/quote.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/data/changelog.js"></script>
+<script src="assets/data/guide.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
